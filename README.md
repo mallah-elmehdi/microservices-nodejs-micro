@@ -6,5 +6,3 @@ This is a react application communicating with 2 services ``Posts Service`` and 
 
 ### Posts Service Featues ###
 This service is an Express-based service with 2 features ``Create a Post`` and ``List all Posts``
-
-![General architecture](https://github.com/mallah-elmehdi/microservices-nodejs-micro/blob/master/posts-service.png?raw=true)
