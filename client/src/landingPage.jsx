@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container,Flex, VStack } from '@chakra-ui/react';
 
 export default () => {
 	return (
-		<>
-			<div className='bg-dark min-vh-100 text-white'>salam</div>
-		</>
+		<Container maxW={container.xl} p={0}>
+			<Flex h="100vh" py={20}>
+
+			</Flex>
+		</Container>
 	);
 };
