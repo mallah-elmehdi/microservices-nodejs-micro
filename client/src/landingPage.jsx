@@ -1,24 +1,14 @@
 import React from 'react';
-import { Container, Flex, VStack } from '@chakra-ui/react';
+import { Container, Flex, Button } from '@chakra-ui/react';
+import Post from './Post';
 
 export default () => {
 	return (
-		<Container maxW='container.xl' p={0}>
+		<Container maxW='container.xl' px={0} py={10}>
+			<label>Create a post</label>
+			<Button />
 			<Flex py={20} flexDir="column" >
-				<VStack
-					w='full'
-					h='full'
-					p={10}
-					spacing={10}
-					bg='gray.100'
-					borderRadius='3xl'></VStack>
-				<VStack
-					w='full'
-					h='full'
-					p={10}
-					spacing={10}
-					bg='gray.100'
-					borderRadius='3xl'></VStack>
+				<Post />
 			</Flex>
 		</Container>
 	);
