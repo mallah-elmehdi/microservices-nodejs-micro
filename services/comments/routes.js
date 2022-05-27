@@ -1,21 +1,15 @@
 // set up modules
 const express = require('express');
-const handler = require('./handler');
+const handlers = require('./handlers');
 
 // creat a route
 const router = express.Router();
 
-// create post and list all posts request
-route
-    .route('/posts')
-    .post(handler.listALlPosts)
-    .get(handler.creatPost);
-
 // create comment and list all commenets request
-route
-    .route('/comments')
-    .post(handler.listALlComments)
-    .get(handler.creatComment);
+router
+	.route('/posts/:id/comments')
+	.get(handlers.listAllComments)
+	.post(handlers.createComment);
 
 // exports the route
-module.exports = route;
+module.exports = router;

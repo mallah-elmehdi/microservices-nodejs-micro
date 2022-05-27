@@ -1,7 +1,8 @@
-GET  http://localhost:3000/posts HTTP/1.1
-# content-type: application/json
+POST  http://localhost:5000/posts/3217b68c/comments HTTP/1.1
+content-type: application/json
 
-# {
-# 	"title": "some title",
-# 	"text": "some text"
-# }
+{
+	"author": "some author",
+	"title": "some title",
+	"text": "some text"
+}

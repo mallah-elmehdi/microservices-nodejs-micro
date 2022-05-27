@@ -1,10 +1,13 @@
 [
 	{
+		"id": "3217b68c",
 		"title": "some title",
-		"text": "some text"
-	},
-	{
-		"title": "some title",
-		"text": "some text"
+		"text": "some text",
+		"comments": [
+			{
+				"author": "some author",
+				"text": "some text"
+			}
+		]
 	}
 ]

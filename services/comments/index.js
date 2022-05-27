@@ -1,18 +1,18 @@
 // set up the modules
 const express = require('express');
 const bodyParser = require('body-parser');
-const {
-	randomBytes
-} = require('crypto');
-const routes = require('./route')
+const routes = require('./routes');
 
 // create an app
-const app =  express();
+const app = express();
+
+// using the body parser
+app.use(bodyParser.json())
 
 // use middleware for all routes
-app.use('/', routes);
+app.use(routes);
 
 // creat a server
-app.listen(3000, () => {
-    console.log("starting the server ...");
+app.listen(5000, () => {
+	console.log("[ Comments Server ] => PORT: 5000");
 })
