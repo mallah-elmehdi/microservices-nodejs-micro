@@ -9,9 +9,7 @@ import {
 	ModalCloseButton,
 	Button,
 	useDisclosure,
-	FormControl,
-	FormLabel,
-	Input
+
 } from '@chakra-ui/react';
 
 export default () => {
@@ -35,12 +33,7 @@ export default () => {
 					<ModalCloseButton />
 
 					<ModalBody>
-						<FormControl>
-							<FormLabel htmlFor='title'>Post Title</FormLabel>
-							<Input id='title' name='title' type='text' />
-							<FormLabel htmlFor='text'>Post Content</FormLabel>
-							<Input id='text' name='text' type='text' />
-						</FormControl>
+
 					</ModalBody>
 
 					<ModalFooter>

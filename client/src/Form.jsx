@@ -2,16 +2,17 @@ import {
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
-	FormHelperText,
+	FormControl,
+	FormLabel,
+	Input,
+	Button
 } from '@chakra-ui/react';
 
-function FormikExample() {
+export default () => {
 	function validateName(value) {
 		let error;
 		if (!value) {
 			error = 'Name is required';
-		} else if (value.toLowerCase() !== 'naruto') {
-			error = "Jeez! You're not a fan 😱";
 		}
 		return error;
 	}
@@ -56,4 +57,4 @@ function FormikExample() {
 			)}
 		</Formik>
 	);
-}
+};
