@@ -38,7 +38,7 @@ export default () => {
 										<Heading fontSize='sm'>
 											{comment.author}
 										</Heading>
-										<Text mt={1.5}>{post.text}</Text>
+										<Text mt={1.5}>{comment.text}</Text>
 									</Box>
 								</GridItem>
 							);
