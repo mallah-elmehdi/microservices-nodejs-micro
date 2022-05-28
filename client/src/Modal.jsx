@@ -4,7 +4,6 @@ import {
 	ModalOverlay,
 	ModalContent,
 	ModalHeader,
-	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
 	Button,
@@ -33,7 +32,7 @@ export default () => {
 					<ModalCloseButton />
 
 					<ModalBody>
-						<Form onSubmit={onClose}></Form>
+						<Form></Form>
 					</ModalBody>
 				</ModalContent>
 			</Modal>
