@@ -1,60 +1,46 @@
-import {
-	FormControl,
-	FormLabel,
-	FormErrorMessage,
-	FormControl,
-	FormLabel,
-	Input,
-	Button
-} from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default () => {
-	function validateName(value) {
-		let error;
-		if (!value) {
-			error = 'Name is required';
-		}
-		return error;
-	}
+	const [title, setTitle] = useState('');
+	const [text, setText] = useState('');
 
+	const submitEvent = async (event) => {
+		event.preventDefault();
+		const result = await axios.post('http://localhost:4000/posts', {
+			title,
+			text,
+		});
+
+		if (result) {
+			setText('');
+			setTitle('');
+		}
+	};
 	return (
-		<Formik
-			initialValues={{ name: 'Sasuke' }}
-			onSubmit={(values, actions) => {
-				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2));
-					actions.setSubmitting(false);
-				}, 1000);
-			}}>
-			{(props) => (
-				<Form>
-					<Field name='name' validate={validateName}>
-						{({ field, form }) => (
-							<FormControl
-								isInvalid={
-									form.errors.name && form.touched.name
-								}>
-								<FormLabel htmlFor='name'>First name</FormLabel>
-								<Input
-									{...field}
-									id='name'
-									placeholder='name'
-								/>
-								<FormErrorMessage>
-									{form.errors.name}
-								</FormErrorMessage>
-							</FormControl>
-						)}
-					</Field>
-					<Button
-						mt={4}
-						colorScheme='teal'
-						isLoading={props.isSubmitting}
-						type='submit'>
-						Submit
-					</Button>
-				</Form>
-			)}
-		</Formik>
+		<form onSubmit={submitEvent}>
+			<FormControl isRequired mb={3}>
+				<FormLabel htmlFor='title'>Post Title</FormLabel>
+				<Input
+					id='title'
+					value={title}
+					onChange={(e) => setTitle(e.target.value)}
+					placeholder='Post Title'
+				/>
+			</FormControl>
+			<FormControl isRequired mb={3}>
+				<FormLabel htmlFor='text'>Post Content</FormLabel>
+				<Input
+					id='text'
+					value={text}
+					onChange={(e) => setText(e.target.value)}
+					placeholder='Post Content'
+				/>
+			</FormControl>
+			<Button bg='green.200' fontWeight='normal' type='submit'>
+				Submit
+			</Button>
+		</form>
 	);
 };

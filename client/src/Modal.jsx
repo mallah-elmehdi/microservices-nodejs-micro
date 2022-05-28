@@ -9,8 +9,8 @@ import {
 	ModalCloseButton,
 	Button,
 	useDisclosure,
-
 } from '@chakra-ui/react';
+import Form from './Form';
 
 export default () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,12 +33,8 @@ export default () => {
 					<ModalCloseButton />
 
 					<ModalBody>
-
+						<Form onSubmit={onClose}></Form>
 					</ModalBody>
-
-					<ModalFooter>
-						<Button variant='ghost'>Secondary Action</Button>
-					</ModalFooter>
 				</ModalContent>
 			</Modal>
 		</>
