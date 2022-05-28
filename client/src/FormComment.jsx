@@ -2,40 +2,43 @@ import { FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 import { useState } from 'react';
 import axios from 'axios';
 
-export default () => {
-	const [title, setTitle] = useState('');
+export default (props) => {
+	const [author, setAuthor] = useState('');
 	const [text, setText] = useState('');
 
 	const submitEvent = async (event) => {
 		event.preventDefault();
-		const result = await axios.post('http://localhost:4000/posts', {
-			title,
-			text,
-		});
+		const result = await axios.post(
+			'http://localhost:5000/posts/' + props.id + '/comments',
+			{
+				author,
+				text,
+			}
+		);
 
 		if (result) {
 			setText('');
-			setTitle('');
+			setAuthor('');
 		}
 	};
 	return (
 		<form onSubmit={submitEvent}>
 			<FormControl isRequired mb={3}>
-				<FormLabel htmlFor='title'>Post Title</FormLabel>
+				<FormLabel htmlFor='author'>Author name</FormLabel>
 				<Input
-					id='title'
-					value={title}
-					onChange={(e) => setTitle(e.target.value)}
-					placeholder='Post Title'
+					id='author'
+					value={author}
+					onChange={(e) => setAuthor(e.target.value)}
+					placeholder='Author name'
 				/>
 			</FormControl>
 			<FormControl isRequired mb={3}>
-				<FormLabel htmlFor='text'>Post Content</FormLabel>
+				<FormLabel htmlFor='text'>Comment Content</FormLabel>
 				<Input
 					id='text'
 					value={text}
 					onChange={(e) => setText(e.target.value)}
-					placeholder='Post Content'
+					placeholder='Comment Content'
 				/>
 			</FormControl>
 			<Button bg='green.200' fontWeight='normal' type='submit'>
