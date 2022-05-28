@@ -8,7 +8,6 @@ export default () => {
 		<Container maxW='container.xl' px={0} py={10}>
 			<Modal />
 			<Post />
-
 		</Container>
 	);
 };

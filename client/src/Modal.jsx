@@ -9,13 +9,14 @@ import {
 	Button,
 	useDisclosure,
 } from '@chakra-ui/react';
-import Form from './Form';
+import Form from './FormPost';
 
 export default () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<>
 			<Button
+				mb={5}
 				bg='green.200'
 				fontWeight='normal'
 				size='lg'

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { VStack, Flex } from '@chakra-ui/react';
+import { Box, GridItem, Grid, Text, Heading } from '@chakra-ui/react';
 
 export default () => {
-	const [posts, usePosts] = useState([]);
+	const [posts, setPosts] = useState([]);
 
 	const getPosts = async () => {
 		const result = await axios.get('http://localhost:4000/posts');
-		console.log(result);
 		setPosts(result.data);
 	};
 
@@ -15,16 +14,20 @@ export default () => {
 		getPosts();
 	}, []);
 
+	const allPosts = posts.map((post) => {
+		return (
+			<GridItem w='100%' h='100%'>
+				<Box shadow='sm' mb={5} p={5} borderRadius='lg' bg='gray.100'>
+					<Heading fontSize='xl'>{post.title}</Heading>
+					<Text mt={4}>{post.text}</Text>
+				</Box>
+			</GridItem>
+		);
+	});
+
 	return (
-		<Flex py={20} flexDir='column'>
-			{}
-			<VStack
-				w='full'
-				mb={10}
-				p={10}
-				spacing={10}
-				bg='gray.100'
-				borderRadius='3xl'></VStack>
-		</Flex>
+		<Grid templateColumns='repeat(5, 1fr)' gap={6}>
+			{allPosts}
+		</Grid>
 	);
 };
