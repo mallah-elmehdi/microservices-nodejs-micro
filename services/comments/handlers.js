@@ -1,6 +1,7 @@
 // set up modules
 const fs = require('fs');
 const path = require('path');
+const { randomBytes } = require('crypto')
 
 // global variable
 const dataPath = path.join(__dirname, '..', '..', 'data', 'comments.json')
