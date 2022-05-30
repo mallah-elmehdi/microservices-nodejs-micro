@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { randomBytes } = require('crypto')
+const axios = require('axios');
 
 // global variable
 const dataPath = path.join(__dirname, '..', '..', 'data', 'comments.json')
@@ -32,6 +33,7 @@ exports.createComment = async (req, res) => {
 		// get the data fields from the body
 		const { author, text } = req.body;
 		const { postId } = req.params;
+		const id = randomBytes(4).toString('hex');
 
 		// check if the body is not empty
 		if (!author || !text)
@@ -41,7 +43,6 @@ exports.createComment = async (req, res) => {
 		fs.readFile(dataPath, (err, data) => {
 			if (err) return res.sendStatus(500);
 			let dataJson = JSON.parse(data);
-			const id = randomBytes(4).toString('hex');
 			dataJson.push({
 				id,
 				author,
@@ -55,7 +56,28 @@ exports.createComment = async (req, res) => {
 			})
 		})
 
+		await axios.post('http://localhost:7000/events', {
+			type: 'commentCreated',
+			data: {
+				id,
+				author,
+				text,
+				postId
+			}
+		})
+
 		return res.sendStatus(200);
+	} catch (error) {
+		res.status(500).send(error);
+	}
+}
+
+// events handler
+exports.events = () => {
+	try {
+		
+		console.log("event : ", req.body.type);
+		res.sendStatus(200)
 	} catch (error) {
 		res.status(500).send(error);
 	}

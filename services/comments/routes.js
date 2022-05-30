@@ -11,5 +11,9 @@ router
 	.get(handlers.listAllComments)
 	.post(handlers.createComment);
 
+router
+	.route('/events')
+	.post(handlers.events);
+
 // exports the route
 module.exports = router;
