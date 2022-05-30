@@ -11,12 +11,12 @@ exports.listAllComments = async (req, res) => {
 		// read the data and send it
 		fs.readFile(dataPath, (err, data) => {
 			if (err) return res.sendStatus(500);
-			const { id } = req.params;
+			const { postId } = req.params;
 			let dataJson = JSON.parse(data);
-			let dataSent = {};
+			let dataSent = [];
 			for (let i = 0; i < dataJson.length; i++) {
-				if (dataJson[i].id == id)
-				dataSent = dataJson[i]
+				if (dataJson[i].postId == postId)
+					dataSent.push(dataJson[i])
 			}
 			res.status(200).json(dataSent);
 		})
@@ -40,11 +40,13 @@ exports.createComment = async (req, res) => {
 		fs.readFile(dataPath, (err, data) => {
 			if (err) return res.sendStatus(500);
 			let dataJson = JSON.parse(data);
-
-			for (let i = 0; i < dataJson.length; i++) {
-				if (dataJson[i].id == id)
-					dataJson[i].comments.push({ "author": author, "text": text })
-			}
+			const id = randomBytes(4).toString('hex');
+			dataJson.push({
+				id,
+				author,
+				text,
+				postId
+			});
 
 			// write the data
 			fs.writeFile(dataPath, JSON.stringify(dataJson), (err) => {

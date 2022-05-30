@@ -13,6 +13,6 @@ app.use(bodyParser.json())
 app.use(routes)
 
 // starting the server
-AudioParamMap.listen(7000, ()=> {
+app.listen(7000, ()=> {
 	console.log("[ Events Server ] => PORT: 7000");
 })

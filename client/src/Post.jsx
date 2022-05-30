@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, GridItem, Grid, Text, Heading } from '@chakra-ui/react';
 import Collapse from './Collapse';
+import Comment from './Comment';
 
 export default () => {
 	const [posts, setPosts] = useState([]);
@@ -22,30 +23,9 @@ export default () => {
 					<Heading fontSize='xl'>{post.title}</Heading>
 					<Text mt={4}>{post.text}</Text>
 					<hr style={{ margin: '20px 0' }} />
-					<Heading fontSize='md' mb={2.5}>
-						{'Comments: (' + post.comments.length + ')'}
-					</Heading>
-					<Grid templateColumns='repeat(1, 1fr)' gap={3}>
-						{post.comments.map((comment) => {
-							return (
-								<GridItem w='100%' h='100%'>
-									<Box
-										mb={5}
-										p={2}
-										borderRadius='lg'
-										border="1px"
-										borderColor='gray.400'>
-										<Heading fontSize='sm'>
-											{comment.author}
-										</Heading>
-										<Text mt={1.5}>{comment.text}</Text>
-									</Box>
-								</GridItem>
-							);
-						})}
-					</Grid>
+					<Comment id={post.id}/>
 					<hr style={{ margin: '20px 0' }} />
-					<Collapse id={post.id}></Collapse>
+					<Collapse id={post.id}/ >
 				</Box>
 			</GridItem>
 		);
