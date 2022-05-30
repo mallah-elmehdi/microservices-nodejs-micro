@@ -73,9 +73,8 @@ exports.createComment = async (req, res) => {
 }
 
 // events handler
-exports.events = () => {
+exports.events = (req, res) => {
 	try {
-		
 		console.log("event : ", req.body.type);
 		res.sendStatus(200)
 	} catch (error) {

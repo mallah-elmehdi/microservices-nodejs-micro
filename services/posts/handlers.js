@@ -63,9 +63,8 @@ exports.createPost = async (req, res) => {
 }
 
 // events handler
-exports.events = (RE, ) => {
+exports.events = (req, res) => {
 	try {
-		console.log("hjaSAJKDKSLVX");
 		console.log("event : ", req.body.type);
 		res.sendStatus(200)
 	} catch (error) {
