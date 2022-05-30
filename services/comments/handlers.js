@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // global variable
-const dataPath = path.join(__dirname, '..', '..', 'data', 'posts.json')
+const dataPath = path.join(__dirname, '..', '..', 'data', 'comments.json')
 
 // list all comments
 exports.listAllComments = async (req, res) => {
@@ -30,7 +30,7 @@ exports.createComment = async (req, res) => {
 	try {
 		// get the data fields from the body
 		const { author, text } = req.body;
-		const { id } = req.params;
+		const { postId } = req.params;
 
 		// check if the body is not empty
 		if (!author || !text)

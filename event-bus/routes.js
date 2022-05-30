@@ -7,9 +7,8 @@ const router = express.Router();
 
 // create comment and list all commenets request
 router
-	.route('/posts/:postId/comments')
-	.get(handlers.listAllComments)
-	.post(handlers.createComment);
+	.route('/events')
+	.post(handlers.events)
 
 // exports the route
 module.exports = router;

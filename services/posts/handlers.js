@@ -1,7 +1,7 @@
 // set up modules
 const fs = require('fs');
 const path = require('path');
-const { radomBytes, randomBytes } = require('crypto');
+const { randomBytes } = require('crypto');
 
 // global variable
 const dataPath = path.join(__dirname, '..', '..', 'data', 'posts.json')
@@ -37,10 +37,9 @@ exports.createPost = async (req, res) => {
 			let dataJson = JSON.parse(data);
 			const id = randomBytes(4).toString('hex');
 			dataJson.push({
-				"id": id,
-				"title": title,
-				"text": text,
-				"comments": []
+				id,
+				title,
+				text,
 			});
 
 			// write the data
